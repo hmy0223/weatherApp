@@ -59,6 +59,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2sP-Qn-jjL"/>
+                    <connections>
+                        <outlet property="GPSButton" destination="MOW-CV-5gw" id="azs-63-sVj"/>
+                        <outlet property="searchBar" destination="1K6-8u-GaX" id="iiz-p6-NCR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
