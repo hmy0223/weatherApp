@@ -13,21 +13,23 @@ class ViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var GPSButton: UIButton!
     @IBOutlet weak var cityList: UITableView!
     
-    let cities: [String] = ["UK", "JP", "HK"]
-    
+    var cities: [City] = []
     let cellReuseIdentifier = "cell"
+    var filteredCandies: [City] = []
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        cities = City.cities()
+
         self.cityList.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         
         cityList.delegate = self
         cityList.dataSource = self
 
     }
-
-
 }
 
 extension ViewController: UISearchBarDelegate {
@@ -42,8 +44,10 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ cityList: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:UITableViewCell = (self.cityList.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell?)!
-        cell.textLabel?.text = self.cities[indexPath.row]
+        let cell = cityList.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let city: City
+        city = cities[indexPath.row]
+        cell.textLabel?.text = city.name
         return cell
     }
     func tableView(_ cityList: UITableView, didSelectRowAt indexPath: IndexPath) {
