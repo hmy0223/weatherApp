@@ -7,33 +7,47 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate {
 
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchByCity: UISearchBar!
     @IBOutlet weak var GPSButton: UIButton!
+    @IBOutlet weak var cityList: UITableView!
+    
+    let cities: [String] = ["UK", "JP", "HK"]
+    
+    let cellReuseIdentifier = "cell"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.cityList.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         
+        cityList.delegate = self
+        cityList.dataSource = self
+
     }
 
 
 }
 
 extension ViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchByCity: UISearchBar, textDidChange searchText: String) {
         print(searchText)
     }
 }
 
 extension ViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+    func tableView(_ cityList: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.cities.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        UITableViewCell()
+    func tableView(_ cityList: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell:UITableViewCell = (self.cityList.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell?)!
+        cell.textLabel?.text = self.cities[indexPath.row]
+        return cell
     }
-    
+    func tableView(_ cityList: UITableView, didSelectRowAt indexPath: IndexPath) {
+            print("You tapped cell number \(indexPath.row).")
+        }
     
 }

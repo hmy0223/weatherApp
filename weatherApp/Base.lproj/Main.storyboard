@@ -32,7 +32,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" placeholder="Search by City" translatesAutoresizingMaskIntoConstraints="NO" id="1K6-8u-GaX">
+                            <searchBar contentMode="redraw" placeholder="Search by City" translatesAutoresizingMaskIntoConstraints="NO" id="1K6-8u-GaX" userLabel="Search By City">
                                 <rect key="frame" x="0.0" y="88" width="374" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -90,7 +90,8 @@
                     <navigationItem key="navigationItem" id="2sP-Qn-jjL"/>
                     <connections>
                         <outlet property="GPSButton" destination="MOW-CV-5gw" id="azs-63-sVj"/>
-                        <outlet property="searchBar" destination="1K6-8u-GaX" id="iiz-p6-NCR"/>
+                        <outlet property="cityList" destination="OwG-nF-UPe" id="ehD-f1-eSS"/>
+                        <outlet property="searchByCity" destination="1K6-8u-GaX" id="RLF-N5-1BR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
