@@ -58,17 +58,22 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="row-eu-mDs">
-                                                    <rect key="frame" x="37" y="11" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="row-eu-mDs">
+                                                    <rect key="frame" x="37" y="11.5" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="row-eu-mDs" secondAttribute="trailing" constant="20" symbolic="YES" id="92v-Yz-mjz"/>
                                                 <constraint firstItem="row-eu-mDs" firstAttribute="centerY" secondItem="L1C-49-aQ8" secondAttribute="centerY" id="VGh-Ue-gg7"/>
+                                                <constraint firstItem="row-eu-mDs" firstAttribute="leading" secondItem="L1C-49-aQ8" secondAttribute="leading" constant="37" id="fkK-Jk-GbU"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="37o-pa-clH" kind="show" id="SD2-Fi-0yP"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -100,6 +105,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="366.66666666666669" y="141.96428571428569"/>
+        </scene>
+        <!--Detail-->
+        <scene sceneID="Vok-ZE-68n">
+            <objects>
+                <viewController id="37o-pa-clH" customClass="Detail" customModule="weatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IMO-6k-Gcq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Hng-ci-zOS"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="mZV-bw-uhN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iib-0F-8Wm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1158" y="142"/>
         </scene>
     </scenes>
     <resources>
