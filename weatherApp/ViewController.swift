@@ -26,7 +26,7 @@ class ViewController: UIViewController {
 
         self.cityList.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         
-        //cityList.delegate = self
+        cityList.delegate = self
         cityList.dataSource = self
 
     }
@@ -61,9 +61,10 @@ extension ViewController: UITableViewDataSource {
         return cell
     }
 }
-//extension ViewController: UITableViewDelegate {
-//    func tableView(_ cityList: UITableView, didSelectRowAt indexPath: IndexPath) {
-//            print("You tapped cell number \(indexPath.row).")
-//        cityList.deselectRow(at: indexPath, animated: true)
-//        }
-//}
+
+extension ViewController: UITableViewDelegate {
+    func tableView(_ cityList: UITableView, didSelectRowAt indexPath: IndexPath) {
+            print("You tapped cell number \(indexPath.row).")
+        performSegue(withIdentifier: "showDetail", sender: self)
+    }
+}

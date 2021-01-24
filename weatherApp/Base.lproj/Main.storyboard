@@ -68,9 +68,6 @@
                                                 <constraint firstItem="row-eu-mDs" firstAttribute="leading" secondItem="L1C-49-aQ8" secondAttribute="leading" constant="37" id="fkK-Jk-GbU"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="37o-pa-clH" kind="show" identifier="ShowDetailSegue" id="SD2-Fi-0yP"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -97,6 +94,7 @@
                         <outlet property="GPSButton" destination="MOW-CV-5gw" id="azs-63-sVj"/>
                         <outlet property="cityList" destination="OwG-nF-UPe" id="ehD-f1-eSS"/>
                         <outlet property="searchByCity" destination="1K6-8u-GaX" id="RLF-N5-1BR"/>
+                        <segue destination="37o-pa-clH" kind="show" identifier="showDetail" id="szd-w2-RZo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
