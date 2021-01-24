@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate {
+class ViewController: UIViewController {
 
     @IBOutlet weak var searchByCity: UISearchBar!
     @IBOutlet weak var GPSButton: UIButton!
@@ -26,9 +26,19 @@ class ViewController: UIViewController, UITableViewDelegate {
 
         self.cityList.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         
-        cityList.delegate = self
+        //cityList.delegate = self
         cityList.dataSource = self
 
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+      guard
+        segue.identifier == "ShowDetailSegue",
+        let indexPath = cityList.indexPathForSelectedRow,
+        let detailViewController = segue.destination as? DetailViewController
+        else {
+          return
+      }
+        detailViewController.city = cities[indexPath.row]
     }
 }
 
@@ -50,8 +60,10 @@ extension ViewController: UITableViewDataSource {
         cell.textLabel?.text = city.name
         return cell
     }
-    func tableView(_ cityList: UITableView, didSelectRowAt indexPath: IndexPath) {
-            print("You tapped cell number \(indexPath.row).")
-        }
-    
 }
+//extension ViewController: UITableViewDelegate {
+//    func tableView(_ cityList: UITableView, didSelectRowAt indexPath: IndexPath) {
+//            print("You tapped cell number \(indexPath.row).")
+//        cityList.deselectRow(at: indexPath, animated: true)
+//        }
+//}
