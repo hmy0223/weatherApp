@@ -38,7 +38,7 @@ class ViewController: UIViewController {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
       guard
-        segue.identifier == "ShowDetailSegue",
+        segue.identifier == "showDetail",
         let indexPath = cityList.indexPathForSelectedRow,
         let detailViewController = segue.destination as? DetailViewController
         else {
