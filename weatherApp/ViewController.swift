@@ -12,8 +12,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var searchByCity: UISearchBar!
     @IBOutlet weak var GPSButton: UIButton!
     @IBOutlet weak var cityList: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     
-    var cities: [City] = []
+    var cities: [City?] = []
+    var searchCities: [City?] = []
     let cellReuseIdentifier = "cell"
     var filteredCandies: [City] = []
 
@@ -28,6 +30,10 @@ class ViewController: UIViewController {
         
         cityList.delegate = self
         cityList.dataSource = self
+        
+        if searchCities.isEmpty {
+            searchCities = cities
+        }
 
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -38,26 +44,32 @@ class ViewController: UIViewController {
         else {
           return
       }
-        detailViewController.city = cities[indexPath.row]
+        detailViewController.city = searchCities[indexPath.row]
     }
 }
 
 extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchByCity: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+        searchCities = cities.compactMap{$0}.filter {
+            $0.name.contains(searchText)
+        }
+        if searchText.isEmpty {
+            searchCities = cities
+        }
+        tableView.reloadData()
     }
 }
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ cityList: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.cities.count
+        return self.searchCities.count
     }
     
     func tableView(_ cityList: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = cityList.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let city: City
-        city = cities[indexPath.row]
-        cell.textLabel?.text = city.name
+        let city: City?
+        city = searchCities[indexPath.row]
+        cell.textLabel?.text = city?.name
         return cell
     }
 }
