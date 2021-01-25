@@ -18,6 +18,7 @@ class DetailViewController: UIViewController {
     }
     func getWeather() {
         NetworkService.shared.getWeather(onSuccess: { (result) in
+            print(result)
             self.weatherResult = result
             self.updateView()
 
@@ -29,6 +30,6 @@ class DetailViewController: UIViewController {
         guard let weatherResult = weatherResult else {
             return
         }
-        weatherLabel.text = weatherResult.current.weather[0].description.capitalized
+        //weatherLabel.text = weatherResult.current.weather[0].Description.capitalized
     }
 }

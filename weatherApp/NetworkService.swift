@@ -12,7 +12,8 @@ class NetworkService {
     let session = URLSession(configuration: .default)
     
     func buildURL() -> String {
-        URL_GET_ONE_CALL = "weather?q=" + URL_CITY_NAME + "&appid=" + URL_API_KEY
+        URL_GET_ONE_CALL = "/weather?q=" + URL_CITY_NAME + "&appid=" + URL_API_KEY
+        print(URL_BASE + URL_GET_ONE_CALL)
         return URL_BASE + URL_GET_ONE_CALL
     }
     
@@ -34,7 +35,7 @@ class NetworkService {
             
             DispatchQueue.main.async {
                 if let error = error {
-                    onError(error.localizedDescription)
+                    print(error)
                     return
                 }
                 
@@ -51,7 +52,7 @@ class NetworkService {
                         onError("Response wasn't 200. It was: " + "\n\(response.statusCode)")
                     }
                 } catch {
-                    onError(error.localizedDescription)
+                    print(error)
                 }
             }
             
