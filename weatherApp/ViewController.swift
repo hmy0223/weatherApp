@@ -32,7 +32,6 @@ class ViewController: UIViewController {
         if searchCities.isEmpty {
             searchCities = cities
         }
-
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
       guard
@@ -48,12 +47,7 @@ class ViewController: UIViewController {
 
 extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchByCity: UISearchBar, textDidChange searchText: String) {
-        searchCities = cities.compactMap{$0}.filter {
-            $0.name.contains(searchText)
-        }
-        if searchText.isEmpty {
-            searchCities = cities
-        }
+
         tableView.reloadData()
     }
 }
@@ -75,5 +69,23 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     func tableView(_ cityList: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showDetail", sender: self)
+    }
+}
+
+class CitySearcher {
+    var  cities: [City]
+    init(cities: [City]) {
+        self.cities = cities
+    }
+    func search(city text: String) -> [City] {
+        var searchCities = cities.compactMap{$0}.filter {
+            $0.name.lowercased().contains(text.lowercased())
+        }.filter{
+            $0.name.lowercased().hasPrefix(text.lowercased())
+        }
+        if text.isEmpty {
+            searchCities = cities
+        }
+        return searchCities
     }
 }

@@ -1,0 +1,40 @@
+[
+    {
+        "id": 1819414,
+        "name": "Hong Kong",
+        "state": "",
+        "country": "HK",
+        "coord": {
+            "lon": 114.26667,
+            "lat": 22.35
+        }
+    },
+    {
+        "id": 1819414,
+        "name": "London",
+        "state": "",
+        "country": "UK",
+        "coord": {
+            "lon": 114.26667,
+            "lat": 22.35
+        }
+    },
+    {
+        "id": 1819414,
+        "name": "Tokyo",
+        "state": "",
+        "country": "JP",
+        "coord": {
+            "lon": 114.26667,
+            "lat": 22.35
+        }},
+    {
+        "id": 1819414,
+        "name": "Rubbish",
+        "state": "",
+        "country": "RB",
+        "coord": {
+            "lon": 114.26667,
+            "lat": 22.35
+        }}
+]
