@@ -5,7 +5,7 @@ class NetworkService {
     
     let URL_SAMPLE = "api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}"
     let URL_API_KEY = "89575d3c850c4fe09a01e9aedf6aec9e"
-    var URL_CITY_NAME = "Hong+Kong"
+    var URL_CITY_NAME = "London"
     var URL_GET_ONE_CALL = ""
     let URL_BASE = "https://api.openweathermap.org/data/2.5"
     
@@ -25,7 +25,7 @@ class NetworkService {
         setCityName(String(cityName))
     }
     
-    func getWeather(onSuccess: @escaping (Result) -> Void, onError: @escaping (String) -> Void) {
+    func getWeather(onSuccess: @escaping (Current) -> Void, onError: @escaping (String) -> Void) {
         guard let url = URL(string: buildURL()) else {
             onError("Error building URL")
             return
@@ -46,7 +46,7 @@ class NetworkService {
                 
                 do {
                     if response.statusCode == 200 {
-                        let items = try JSONDecoder().decode(Result.self, from: data)
+                        let items = try JSONDecoder().decode(Current.self, from: data)
                         onSuccess(items)
                     } else {
                         onError("Response wasn't 200. It was: " + "\n\(response.statusCode)")

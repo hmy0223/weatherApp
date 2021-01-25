@@ -6,7 +6,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailTitle: UILabel!
     @IBOutlet weak var weatherLabel: UILabel!
     var city: City?
-    var weatherResult: Result?
+    var weatherResult: Current?
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -30,6 +30,6 @@ class DetailViewController: UIViewController {
         guard let weatherResult = weatherResult else {
             return
         }
-        //weatherLabel.text = weatherResult.current.weather[0].Description.capitalized
+        weatherLabel.text = weatherResult.weather[0].weatherDescription.capitalized
     }
 }
