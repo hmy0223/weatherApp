@@ -17,8 +17,6 @@ class ViewController: UIViewController {
     var cities: [City?] = []
     var searchCities: [City?] = []
     let cellReuseIdentifier = "cell"
-    var filteredCandies: [City] = []
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
