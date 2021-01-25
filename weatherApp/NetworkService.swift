@@ -5,28 +5,29 @@ class NetworkService {
     
     let URL_SAMPLE = "api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}"
     let URL_API_KEY = "89575d3c850c4fe09a01e9aedf6aec9e"
-    var URL_CITY_NAME = "London"
+    var URL_CITY_NAME = ""
     var URL_GET_ONE_CALL = ""
     let URL_BASE = "https://api.openweathermap.org/data/2.5"
     
     let session = URLSession(configuration: .default)
     
-    func buildURL() -> String {
+    func buildURL(parsedCity: String) -> String {
+        setCityName(parsedCity)
         URL_GET_ONE_CALL = "/weather?q=" + URL_CITY_NAME + "&appid=" + URL_API_KEY
-        print(URL_BASE + URL_GET_ONE_CALL)
-        return URL_BASE + URL_GET_ONE_CALL
+        let originalURL = URL_BASE + URL_GET_ONE_CALL
+      guard
+        let urlString = originalURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+        return "Error building URL"
+      }
+        return urlString
     }
     
     func setCityName(_ cityName: String) {
         URL_CITY_NAME = cityName
     }
     
-    func setCityName(_ cityName: Double) {
-        setCityName(String(cityName))
-    }
-    
-    func getWeather(onSuccess: @escaping (Current) -> Void, onError: @escaping (String) -> Void) {
-        guard let url = URL(string: buildURL()) else {
+    func getWeather(parsedCity: String, onSuccess: @escaping (Current) -> Void, onError: @escaping (String) -> Void) {
+        guard let url = URL(string: buildURL(parsedCity: parsedCity)) else {
             onError("Error building URL")
             return
         }

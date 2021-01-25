@@ -6,19 +6,22 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailTitle: UILabel!
     @IBOutlet weak var weatherLabel: UILabel!
     var city: City?
+    var selectedCity: String = ""
     var weatherResult: Current?
     override func viewDidLoad() {
+      guard let selectedCity = city else {
+            return
+        }
         super.viewDidLoad()
         configureView()
-        getWeather()
+        getWeather(selectedCity: selectedCity.name)
     }
     
     func configureView() {
         detailTitle.text = city?.name
     }
-    func getWeather() {
-        NetworkService.shared.getWeather(onSuccess: { (result) in
-            print(result)
+    func getWeather(selectedCity: String) {
+        NetworkService.shared.getWeather(parsedCity: selectedCity, onSuccess: { (result) in
             self.weatherResult = result
             self.updateView()
 

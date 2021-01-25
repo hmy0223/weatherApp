@@ -1,8 +1,5 @@
 import Foundation
 
-//struct Result: Codable {
-//    let current: Current?
-//}
 struct Current: Codable {
     let coord: Temp
     let weather: [Weather]

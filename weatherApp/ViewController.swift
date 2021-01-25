@@ -74,7 +74,6 @@ extension ViewController: UITableViewDataSource {
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ cityList: UITableView, didSelectRowAt indexPath: IndexPath) {
-            print("You tapped cell number \(indexPath.row).")
         performSegue(withIdentifier: "showDetail", sender: self)
     }
 }
