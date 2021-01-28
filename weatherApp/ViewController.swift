@@ -14,15 +14,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var cityList: UITableView!
     @IBOutlet weak var tableView: UITableView!
     
-    var cities: [City?] = []
-    var searchCities: [City?] = []
+    var cities: [City] = []
+    var searchCities: [City] = []
     let cellReuseIdentifier = "cell"
+    var citySearcher: CitySearcher?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         cities = City.cities()
+        citySearcher = CitySearcher(cities: cities)
 
         self.cityList.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         
@@ -47,7 +49,7 @@ class ViewController: UIViewController {
 
 extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchByCity: UISearchBar, textDidChange searchText: String) {
-
+        searchCities = citySearcher!.search(city: searchText)
         tableView.reloadData()
     }
 }
@@ -73,8 +75,8 @@ extension ViewController: UITableViewDelegate {
 }
 
 class CitySearcher {
-    var  cities: [City]
-    init(cities: [City]) {
+    var  cities: [City?]
+    init(cities: [City?]) {
         self.cities = cities
     }
     func search(city text: String) -> [City] {
@@ -84,7 +86,7 @@ class CitySearcher {
             $0.name.lowercased().hasPrefix(text.lowercased())
         }
         if text.isEmpty {
-            searchCities = cities
+            searchCities = cities.compactMap{$0}
         }
         return searchCities
     }

@@ -1,9 +1,4 @@
-//
-//  CityList.swift
-//  weatherApp
-//
-//  Created by Ho Man Yee on 21/1/2021.
-//
+
 
 import Foundation
 
@@ -36,6 +31,6 @@ extension City {
 }
 extension City: Equatable {
     static func == (lhs: City, rhs: City) -> Bool {
-        lhs.name == rhs.name 
+        lhs.name == rhs.name
     }
 }

@@ -34,21 +34,21 @@ class weatherAppTests: XCTestCase {
     }
     func testSearchTextHongKongCaseInsensitiveReturnsHongKong() throws {
         //given a list of cities
-        let expected = [City(id: 0, name: "Hong Kong", state: "7head", country:"HK", coord: Coord(lon: 000, lat: 000))]
+        let expected = [City(id: 0, name: "Hong Kong", state: "fake", country:"HK", coord: Coord(lon: 000, lat: 000))]
         //when search text is "hong kong"
         let actual = sut.search(city: "hong kong")
         print(actual)
         //then should return hong kong only
         XCTAssertEqual(expected, actual)
     }
-//    func testSearchTextRubbishCaseInsensitiveReturnsRubbish() throws {
-//        //given a list of cities
-//        let expected = [City(id: 0, name: "Rubbish", state: "7head", country:"HK", coord: Coord(lon: 000, lat: 000))]
-//        //when search text is "hong kong"
-//        let actual = sut.search(city: "Rubbish")
-//        //then should return hong kong only
-//        XCTAssertEqual(expected, actual)
-//    }
+    func testSearchTextRubbishCaseInsensitiveReturnsRubbish() throws {
+        //given a list of cities
+        let expected = [City(id: 0, name: "Rubbish", state: "23fj", country:"HK", coord: Coord(lon: 000, lat: 000))]
+        //when search text is "hong kong"
+        let actual = sut.search(city: "Rubbish")
+        //then should return hong kong only
+        XCTAssertEqual(expected, actual)
+    }
     
 
     func testPerformanceExample() throws {

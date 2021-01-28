@@ -5,6 +5,8 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var detailTitle: UILabel!
     @IBOutlet weak var weatherLabel: UILabel!
+    @IBOutlet weak var tempLabel: UILabel!
+    
     var city: City?
     var selectedCity: String = ""
     var weatherResult: Current?
@@ -34,5 +36,7 @@ class DetailViewController: UIViewController {
             return
         }
         weatherLabel.text = weatherResult.weather[0].weatherDescription.capitalized
+        let tempCelsius = weatherResult.main.temp - 273.15
+        tempLabel.text = String(round(tempCelsius)) + "°C"
     }
 }
